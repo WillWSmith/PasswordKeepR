@@ -37,6 +37,7 @@ const accountsRoutes = require('./routes/accounts');
 const accountsApiRoutes = require('./routes/accounts-api');
 const categoriesRoutes = require('./routes/categories');
 const categoriesApiRoutes = require('./routes/categories-api');
+const loginRoutes = require('./routes/login');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -49,6 +50,7 @@ app.use('/accounts', accountsRoutes);
 app.use('/api/accounts', accountsApiRoutes);
 app.use('/categories', categoriesRoutes);
 app.use('/api/categories', categoriesApiRoutes);
+app.use('/login', loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
