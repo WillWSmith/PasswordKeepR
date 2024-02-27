@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Users</title>
+  <title>Create User</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -18,9 +18,27 @@
 </head>
 
 <body>
-  <h1>Users</h1>
-  <button id="fetch-users">Fetch Users via AJAX</button>
-  <ul id="users"></ul>
-</body>
+  <%- include('partials/_header') %>
 
+    <main class="container">
+      <h2>Enter New User Info</h2>
+      <section>
+        <form action="/users" method="POST">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" id="text" name="password" required>
+          </div>
+          <button type="submit">Create User</button>
+        </form>
+      </section>
+    </main>
+  </body>
 </html>
