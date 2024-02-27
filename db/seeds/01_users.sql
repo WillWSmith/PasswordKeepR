@@ -1,8 +1,8 @@
 -- Users table seeds here (Example)
-INSERT INTO users (name) VALUES ('Alice');
-INSERT INTO users (name) VALUES ('Kira');
-INSERT INTO users (name) VALUES ('Josh');
-INSERT INTO users (name) VALUES ('Molly');
-INSERT INTO users (name) VALUES ('Sam');
+INSERT INTO users (name, email) VALUES ('Alice', 'Alice@gmail.com');
+INSERT INTO users (name, email) VALUES ('Kira', 'Kira@gmail.com');
+INSERT INTO users (name, email) VALUES ('Josh', 'Josh@gmail.com');
+INSERT INTO users (name, email) VALUES ('Molly', 'Molly@gmail.com');
+INSERT INTO users (name, email) VALUES ('Sam', 'Sam@gmail.com');
 
 -- Path: db/seeds/01_users.sql
