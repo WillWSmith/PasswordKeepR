@@ -1,9 +1,9 @@
 login.ejs
 
 B GET NULL
-R GET ??? /users/:email ??? /users/:user_id ???
+R GET NULL
 E POST NULL
-A POST NULL
+A POST /login
 D POST NULL
 
 index.ejs
