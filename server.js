@@ -32,11 +32,8 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const organizationsRoutes = require('./routes/organizations');
-const organizationsApiRoutes = require('./routes/organizations-api');
 const accountsRoutes = require('./routes/accounts');
-const accountsApiRoutes = require('./routes/accounts-api');
 const categoriesRoutes = require('./routes/categories');
-const categoriesApiRoutes = require('./routes/categories-api');
 const loginRoutes = require('./routes/login');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -45,12 +42,10 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/organizations', organizationsRoutes);
-app.use('/api/organizations', organizationsApiRoutes);
 app.use('/accounts', accountsRoutes);
-app.use('/api/accounts', accountsApiRoutes);
 app.use('/categories', categoriesRoutes);
-app.use('/api/categories', categoriesApiRoutes);
-app.use('/login', loginRoutes);
+// app.use('/login', loginRoutes); -- not properly implemented yet (preventing server from running)
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
