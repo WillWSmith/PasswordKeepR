@@ -31,6 +31,21 @@
         <th>Actions</th>
       </tr>
     </thead>
+    <tbody>
+      <% accounts.forEach(function(account) { %>
+        <tr>
+          <td><%= account.website %></td>
+          <td><%= account.username %></td>
+          <td><%= account.password %></td>
+          <td>
+            <a href="/update-account/<%= account.id %>">Edit</a>
+            <!-- <form action="/delete-account/<%= account.id %>" method="POST">  // this is the form that could be used to delete the account
+              <button type="submit">Delete</button>
+            </form> -->
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
   </table>
 </body>
 
