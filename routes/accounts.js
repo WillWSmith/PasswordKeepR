@@ -6,11 +6,21 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const db = require('../db/connection');
 
 // Add New Account Route
 
 router.get('/new-account', (req, res) => {
+  const user_email = req.cookies.user_email; // get user_email from cookie
+  const templateVars = { user_email };
+
+  // if user_email is not set, redirect to login
+  if (!user_email) {
+    return res.redirect('/login');
+  }
+
+  // render the new-account page
   res.render('new-account');
 }); 
 
