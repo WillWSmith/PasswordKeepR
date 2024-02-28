@@ -2,11 +2,12 @@ const express = require('express');
 const router  = express.Router();
 
 // do this instead
-router.post('/login/:id', (req, res) => {
-
-  // or using plain-text cookies
-  res.cookie('user_id', req.params.id);
+router.post('/login', (req, res) => {
+  const email = req.body.email;
+ 
+  // or using plain-text cookies, set to user's email
+  res.cookie('user_email', req.body.email);
 
   // send the user somewhere
-  res.redirect('/:org_id');
+  res.redirect('/index');
 });
