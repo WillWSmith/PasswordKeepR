@@ -8,8 +8,10 @@
 const express = require('express');
 const router  = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('accounts');
+// Add New Account Route
+
+router.get('/new-account', (req, res) => {
+  res.render('new-account');
 }); 
 
 module.exports = router;
