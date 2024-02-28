@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit Account</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/login.js"></script>
+</head>
+<body>
+  <main class="container">
+      <h1>Edit Account</h1>
+      <section>
+          <form method="POST" action="/accounts/<%= id %>?_method=PUT">
+              <div>
+                  <label for="website">Website:</label>
+                  <input type="url" id="website" name="website" value="<%= website %>" readonly>
+              </div>
+              <div>
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" name="username" value="<%= username %>" readonly>
+              </div>
+              <div>
+                  <label for="password">Password:</label>
+                  <input type="text" id="password" name="password" required>
+              </div>
+              <button type="submit">Update Account</button>
+          </form>
+
+          <div class="generate-password">
+              <!-- Generate Password -->
+          </div>
+      </section>
+  </main>
+</body>
+
+</html>
