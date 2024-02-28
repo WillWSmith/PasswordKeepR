@@ -11,11 +11,41 @@ const db = require('../db/connection');
 
 
 router.post('/users', (req, res) => {
+ 
+  // check if input is present
+  if (!req.body.name || !req.body.email) {
+    res
+      .status(400)
+      .send('name and email are required');
+    return;
+  }
+
+  // check if email already exists
+  if (req.body.email) {
+    const query = `SELECT * FROM users WHERE email = $1`;
+    const values = [req.body.email];
+    db.query(query, values)
+      .then(data => {
+        const users = data.rows;
+        if (users.length > 0) {
+          res
+            .status(400)
+            .send('email already exists');
+          return;
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  }
+ 
+  // create a new user
   const query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *`;
   const values = [req.body.name, req.body.email];
-  
-  console.log(query, values);
 
+  console.log(query, values);
   db.query(query, values)
     .then(data => {
       const users = data.rows;
