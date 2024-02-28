@@ -57,7 +57,7 @@ router.post('/users', (req, res) => {
         .json({ error: err.message });
     });
 
-  req.cookies.user_id = req.body.email; // set the user_id cookie to the email
+  req.cookies.user_email = req.body.email; // set user_email cookie to the email
   res.redirect('/index'); // send the user to the index page
 }); 
 
