@@ -6,10 +6,29 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const db = require('../db/connection');
 
-router.get('/', (req, res) => {
-  res.render('users');
+
+router.post('/users', (req, res) => {
+  const query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *`;
+  const values = [req.body.name, req.body.email];
+  
+  console.log(query, values);
+
+  db.query(query, values)
+    .then(data => {
+      const users = data.rows;
+      res.json({ users });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+
+  req.cookies.user_id = req.body.email; // set the user_id cookie to the email
+  res.redirect('/index'); // send the user to the index page
 }); 
 
 module.exports = router;
