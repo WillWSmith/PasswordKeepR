@@ -36,7 +36,11 @@ router.post('/new-account', (req, res) => {
   const category = req.body.category;
   const username = req.body.username;
   const password = req.body.password;
+  const user_email = req.cookies.user_email; // get user_email from cookie
   
+  if (!user_email) {
+    return res.status(400).send('You must be logged in to create an account');
+  }
   if (!website || !category || !username || !password) {
     return res.status(400).send('All fields are required');
   }
