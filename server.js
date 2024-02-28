@@ -41,7 +41,7 @@ const loginRoutes = require('./routes/login');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/organizations', organizationsRoutes);
+app.use('/', organizationsRoutes);
 app.use('/accounts', accountsRoutes);
 app.use('/categories', categoriesRoutes);
 // app.use('/login', loginRoutes); -- not properly implemented yet (preventing server from running)
