@@ -2,7 +2,7 @@
 
 //Do we use jQuery or vanilla JS?
 
-const generatePassword = function (length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
+const generatePassword = function (length, lowercase, uppercase, numbers, symbols) {
 
   const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
   const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -11,16 +11,16 @@ const generatePassword = function (length, includeLowercase, includeUppercase, i
 
   let chars = '';
   
-  if (includeLowercase) {
+  if (lowercase) {
     chars += lowercaseChars;
   }
-  if (includeUppercase) {
+  if (uppercase) {
     chars += uppercaseChars;
   }
-  if (includeNumbers) {
+  if (numbers) {
     chars += numberChars;
   }
-  if (includeSymbols) {
+  if (symbols) {
     chars += symbolChars;
   }
   if (chars === '') {
