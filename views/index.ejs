@@ -49,6 +49,8 @@
           <td><%= account.username %></td>
           <td><%= account.password %></td>
           <td>
+            <button id="copy-username" data-username="<%= account.username %>">Copy Username</button>
+            <button id="copy-password" data-password="<%= account.password %>">Copy Password</button>
             <a href="/update-account/<%= account.id %>">Edit</a>
             <!-- <form action="/delete-account/<%= account.id %>" method="POST">  // this is the form that could be used to delete the account
               <button type="submit">Delete</button>

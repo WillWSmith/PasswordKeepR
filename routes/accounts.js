@@ -39,6 +39,7 @@ router.get('/fetch-accounts', (req, res) => {
     });
 });
 
+
 // Get the new-account page
 router.get('/new-account', (req, res) => {
   const user_email = req.cookies.user_email; // get user_email from cookie

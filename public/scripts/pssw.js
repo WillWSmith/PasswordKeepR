@@ -58,3 +58,21 @@ $(document).ready(function () {
   });
 });
 
+
+// Event listener for the copy username button
+$(document).ready(function () {
+  $('#copy-username').click(function () {
+    const username = $(this).data('username');
+    copyToClipboard(username);
+    alert('Username copied to clipboard');
+  });
+});
+
+// Event listener for the copy password button
+$(document).ready(function () {
+  $('#copy-password').click(function () {
+    const password = $(this).data('password');
+    copyToClipboard(password);
+    alert('Password copied to clipboard');
+  });
+});
