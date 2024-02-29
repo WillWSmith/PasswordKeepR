@@ -44,7 +44,7 @@ app.use('/users', usersRoutes);
 app.use('/', organizationsRoutes);
 app.use('/', accountsRoutes);
 app.use('/categories', categoriesRoutes);
-// app.use('/login', loginRoutes); not properly implemented yet (preventing server from running)
+app.use('/', loginRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
