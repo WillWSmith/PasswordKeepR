@@ -22,6 +22,17 @@
   
   <h1>Accounts</h1>
   <a href="/new-account">Add New Account</a>
+
+    <!-- Add select dropdown for sorting -->
+    <label for="category">Sort By:</label>
+    <select id="category" name="category">
+      <option value="all">All</option>
+      <!-- Populate options dynamically based on categories in the database -->
+      <% categories.forEach(function(category) { %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+      <% }); %>
+    </select>
+
   <table>
     <thead>
       <tr>
