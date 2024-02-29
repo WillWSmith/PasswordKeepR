@@ -32,8 +32,14 @@ const generatePassword = function (length, lowercase, uppercase, numbers, symbol
 
 
 const copyToClipboard = function (text) {
-  const 
-
+  navigator.clipboard.writeText(text)
+  .then(() => {
+    alert('Password copied to clipboard');
+  })
+  .catch((err) => {
+    console.error('Failed to copy password to clipboard:', err);
+  });
+};
 
 
 $(document).ready(function () {
@@ -47,12 +53,8 @@ $(document).ready(function () {
 
     $('#passwordOutput').val(password);
   
+    copyToClipboard(password);
+    alert('Password copied to clipboard');
   });
 });
 
-
-  // $('#copyButton').click(function () {
-  //   $('#password').select();
-  //   document.execCommand('copy');
-  //   alert('Password copied to clipboard');
-  // });
