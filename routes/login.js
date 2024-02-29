@@ -2,16 +2,6 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-// router.get('/', (req, res) => {
-//   const user_email = req.cookies.user_email; 
-//   const templateVars = { user_email };
- 
-//   if (!user_email) {
-//     return res.redirect('/login');
-//   }
-//   res.render('login', templateVars);
-// });
-
 
 // Login
 router.post('/login', (req, res) => {
