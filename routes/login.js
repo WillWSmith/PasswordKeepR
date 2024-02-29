@@ -12,17 +12,12 @@ router.post('/login', (req, res) => {
       if (data.rows.length > 0) {
         // if user with email and password found
         const user = data.rows[0];
-          res.cookie('user_email', req.body.email);
-          res.redirect('/index');
-  
-        } else { // no user found with email and password
-          res.status(401).send('Unauthorized');
-        }
+        res.cookie('user_email', req.body.email);
+      }
+      res.redirect('/index');
     })
     .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
+      res.status(500).json({ error: err.message });
     });
 });
  
