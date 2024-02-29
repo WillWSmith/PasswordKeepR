@@ -10,10 +10,34 @@ const router = express.Router();
 const db = require('../db/connection');
 
 
-// get the accounts page
-//  -- I feel like this is a SPA with the sort by category functionality?
+// Route to fetch accounts based on category
+router.get('/fetch-accounts', (req, res) => {
+  const userOrganizationId = 1; // Example: Fetch user's organization id
+  const categoryName = req.query.categoryName; // Get category name from request query
 
+  let query = `
+    SELECT accounts.*
+    FROM accounts
+    JOIN categories ON accounts.category_id = categories.id
+    WHERE organizations.id = $1
+  `;
+  const values = [userOrganizationId];
 
+  // If a specific category is selected, filter accounts by category name
+  if (categoryName !== 'all') {
+    query += ` AND categories.name = $2`;
+    values.push(categoryName);
+  }
+
+  db.query(query, values)
+    .then(data => {
+      const accounts = data.rows;
+      res.json({ accounts });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
 
 // Get the new-account page
 router.get('/new-account', (req, res) => {
