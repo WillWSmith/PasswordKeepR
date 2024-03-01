@@ -13,9 +13,9 @@
       <div class="navbar-right">
         <h1><%= organization_name%></h1>
         <h2>Welcome: <%= user_name%></h2>
-          <div class="new_user">
-            <a href="/users">Create a New User</a>
-          </div>
+          <form action="/users" method="GET">
+            <button type="submit" class="new-user-btn">Create a New User</button>
+          </form>
           <form action="/logout" method="POST">
             <button type="submit" class="logout_btn">Logout</button>
           </form>

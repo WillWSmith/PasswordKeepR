@@ -9,11 +9,34 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
 
-router.get('/users', (req, res) => {
-}
+// Get the users page to create new user
+router.get('/', (req, res) => {
+  const user_email = req.cookies.user_email; // get user_email from cookie
+  const query = `
+    SELECT organizations.name as organization_name, users.name as user_name
+    FROM organizations
+    JOIN users ON users.id = organizations.user_id
+    WHERE organizations.user_id = (SELECT id FROM users WHERE email = $1)`;
+  const values = [user_email];
+
+  db.query(query, values)
+    .then(data => {
+      console.log(data.rows);
+
+      const organization_name = data.rows[0].organization_name;
+      const user_name = data.rows[0].user_name;
+      const templateVars = { user_email, organization_name, user_name };
+
+      // render the users page to create new user
+      res.render('users', templateVars);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
 
 
-router.post('/users', (req, res) => {
+router.post('/', (req, res) => {
  
   // check if input is present
   if (!req.body.name || !req.body.email) {
@@ -60,7 +83,7 @@ router.post('/users', (req, res) => {
         .json({ error: err.message });
     });
 
-  req.cookies.user_email = req.body.email; // set user_email cookie to the email
+  req.cookies.user_email = req.body.user_email; // set user_email cookie to the email
   res.redirect('/index'); // send the user to the index page
 }); 
 
