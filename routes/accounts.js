@@ -44,15 +44,28 @@ router.get('/fetch-accounts', (req, res) => {
 // Get the new-account page
 router.get('/new-account', (req, res) => {
   const user_email = req.cookies.user_email; // get user_email from cookie
-  const templateVars = { user_email };
+  const query = `
+    SELECT organizations.name as organization_name, users.name as user_name
+    FROM organizations
+    JOIN users ON users.id = organizations.user_id
+    WHERE organizations.user_id = (SELECT id FROM users WHERE email = $1)`;
+  const values = [user_email];
+  
+  db.query(query, values)
+    .then(data => {
+      console.log(data.rows);
 
-  // if user_email is not logged in, redirect to login
-  if (!user_email) {
-    return res.redirect('/login');
-  }
-  // render the new-account page
-  res.render('new-account', templateVars);
-}); 
+      const organization_name = data.rows[0].organization_name;
+      const user_name = data.rows[0].user_name;
+      const templateVars = { user_email, organization_name, user_name};
+  
+      // render the new-account page
+      res.render('new-account', templateVars);
+    }) 
+    .catch (err => {
+      res.status(500).json({ error: err.message });
+  });
+});
 
 
 
@@ -100,13 +113,10 @@ router.get('/update-account/:id', (req, res) => {
   const user_email = req.cookies.user_email; // get user_email from cookie
   const templateVars = { user_email };
 
-  // if user_email is not logged in, redirect to login
-  if (!user_email) {
-    return res.redirect('/login');
-  }
   // render the update-account page
   res.render('update-account', templateVars);
 });
+
 
 // Update an account
 router.put('/accounts/:id', (req, res) => {
