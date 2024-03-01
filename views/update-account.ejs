@@ -21,7 +21,7 @@
   <main class="container">
       <h1>Edit Account</h1>
       <section>
-          <form method="POST" action="/accounts/<%= id %>?_method=PUT">
+          <form method="POST" action="/accounts/<%= id %>">
               <div>
                   <label for="website">Website:</label>
                   <input type="url" id="website" name="website" value="<%= website %>" readonly>
@@ -32,7 +32,7 @@
               </div>
               <div>
                   <label for="password">Password:</label>
-                  <input type="text" id="password" name="password" required>
+                  <input type="password" id="password" name="password" required>
               </div>
               <button type="submit">Update Account</button>
           </form>
