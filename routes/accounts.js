@@ -94,7 +94,7 @@ router.post('/new-account', (req, res) => {
 
 
 // Get the edit-account page
-router.get('/edit-account/:id', (req, res) => {
+router.get('/update-account/:id', (req, res) => {
   const accountId = req.params.id;
   const user_email = req.cookies.user_email; // get user_email from cookie
   const templateVars = { user_email };
