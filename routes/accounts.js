@@ -19,6 +19,7 @@ router.get('/fetch-accounts', (req, res) => {
     SELECT accounts.*
     FROM accounts
     JOIN categories ON accounts.category_id = categories.id
+    JOIN organizations ON categories.organization_id = organizations.id
     WHERE organizations.id = $1
   `;
   const values = [userOrganizationId];
