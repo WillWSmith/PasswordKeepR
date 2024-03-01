@@ -1,3 +1,5 @@
+<!-- index.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,24 +16,19 @@
   <link rel="stylesheet" href="/styles/layout.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
-
-  
   <h1>Accounts</h1>
   <a href="/new-account">Add New Account</a>
 
-    <!-- Add select dropdown for sorting -->
-    <label for="category">Sort By:</label>
-    <select id="category" name="category">
-      <option value="all">All</option>
-      <!-- Populate options dynamically based on categories in the database -->
-      <% categories.forEach(function(category) { %>
-        <option value="<%= category.id %>"><%= category.name %></option>
-      <% }); %>
-    </select>
+  <!-- Add select dropdown for sorting -->
+  <label for="category">Sort By:</label>
+  <select id="category" name="category">
+    <option value="all">All</option>
+    <!-- Categories will be dynamically populated here -->
+
+  </select>
 
   <table>
     <thead>
@@ -43,23 +40,12 @@
       </tr>
     </thead>
     <tbody>
-      <% accounts.forEach(function(account) { %>
-        <tr>
-          <td><%= account.website %></td>
-          <td><%= account.username %></td>
-          <td><%= account.password %></td>
-          <td>
-            <button id="copy-username" data-username="<%= account.username %>">Copy Username</button>
-            <button id="copy-password" data-password="<%= account.password %>">Copy Password</button>
-            <a href="/update-account/<%= account.id %>">Edit</a>
-            <!-- <form action="/delete-account/<%= account.id %>" method="POST">  // this is the form that could be used to delete the account
-              <button type="submit">Delete</button>
-            </form> -->
-          </td>
-        </tr>
-      <% }); %>
+      <!-- Accounts will be dynamically populated here -->
     </tbody>
   </table>
+
+  <!-- Include the script for populating the category dropdown -->
+  <script src="/scripts/categoryDropdown.js"></script>
 </body>
 
 </html>
