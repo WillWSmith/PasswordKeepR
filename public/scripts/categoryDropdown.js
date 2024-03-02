@@ -21,16 +21,16 @@ $(document).ready(function() {
   }
 
 // Function to fetch accounts based on category
-function fetchAccounts(categoryName) {
-
+// Function to fetch accounts based on category
+function fetchAccounts(categoryId) {
   let url = '/fetch-accounts';
   let requestData = {};
 
-  if (categoryName !== 'all') {
-    requestData.categoryName = categoryName;
+  if (categoryId !== 'all') {
+    requestData.categoryId = categoryId; // Sending categoryId instead of categoryName
   }
 
-  if (categoryName === 'all') {
+  if (categoryId === 'all') {
     url = '/fetch-all-accounts';
   }
 
@@ -40,10 +40,10 @@ function fetchAccounts(categoryName) {
     data: requestData,
     success: function(data) {
       // Clear previous accounts
-      $('#accounts-table tbody').empty();
+      $('#accounts-body').empty();
       // Populate accounts table with fetched accounts
       data.accounts.forEach(function(account) {
-        $('#accounts-table tbody').append(`
+        $('#accounts-body').append(`
           <tr>
             <td>${account.website}</td>
             <td>${account.username}</td>
@@ -62,6 +62,7 @@ function fetchAccounts(categoryName) {
     }
   });
 }
+
 
 
   // Call the function to populate the category dropdown when the page loads

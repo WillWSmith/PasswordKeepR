@@ -37,6 +37,7 @@ router.get('/fetch-all-accounts', (req, res) => {
 router.get('/fetch-accounts', (req, res) => {
   const userOrganizationId = 1; // Assuming the organization ID is hardcoded
   const categoryName = req.query.categoryName;
+  const categoryId = req.query.categoryId;
 
   let query = `
     SELECT accounts.*
@@ -50,7 +51,7 @@ router.get('/fetch-accounts', (req, res) => {
   // If a specific category is selected, filter accounts by category name
   if (categoryName !== 'all') {
     query += ` AND categories.id = $2`;
-    values.push(categoryName);
+    values.push(categoryId);
   }
 
   db.query(query, values)
