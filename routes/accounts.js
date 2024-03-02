@@ -132,11 +132,37 @@ router.post('/new-account', (req, res) => {
 // Get the edit-account page
 router.get('/update-account/:id', (req, res) => {
   const accountId = req.params.id;
-  const user_email = req.cookies.user_email; // get user_email from cookie
-  const templateVars = { user_email };
+  const user_email = req.cookies.user_email;
 
-  // render the update-account page
-  res.render('update-account', templateVars);
+  const accountQuery = `SELECT * FROM accounts WHERE id = $1`;
+  const accountValues = [accountId];
+  
+  db.query(accountQuery, accountValues)
+    .then(accountData => {
+      const account = accountData.rows[0];
+
+        const query = `
+          SELECT organizations.name AS organization_name, users.name AS user_name
+          FROM organizations
+          JOIN users ON users.id = organizations.user_id
+          WHERE organizations.user_id = (SELECT id FROM users WHERE email = $1)`;
+        const values = [user_email];
+
+      db.query(query, values)
+        .then(data => {
+          const organization_name = data.rows[0].organization_name;
+          const user_name = data.rows[0].user_name;
+          const templateVars = { user_email, organization_name, user_name, id: accountId, website: account.website, username: account.username, password: account.password};
+
+          res.render('update-account', templateVars);
+    }) 
+    .catch (err => {
+      res.status(500).json({ error: err.message });
+    });
+  })
+  .catch(err => {
+    res.status(500).json({ error: err.message });
+  });
 });
 
 
