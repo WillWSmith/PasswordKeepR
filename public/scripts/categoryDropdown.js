@@ -49,8 +49,8 @@ function fetchAccounts(categoryId) {
             <td>${account.username}</td>
             <td>${account.password}</td>
             <td>
-              <button id="copy-username" data-username="${account.username}">Copy Username</button>
-              <button id="copy-password" data-password="${account.password}">Copy Password</button>
+              <button class="copyButton" data-text="${account.username}">Copy Username</button>
+              <button class="copyButton" data-text="${account.password}">Copy Password</button>
               <a href="/update-account/${account.id}">Edit</a>
             </td>
           </tr>
@@ -71,12 +71,31 @@ function fetchAccounts(categoryId) {
   // Call the function to fetch accounts when the page loads
   fetchAccounts('all');
 
-  // Event listener for category dropdown change
+  // Event listeners
   $('#category').change(function() {
     const selectedCategory = $(this).val();
     fetchAccounts(selectedCategory);
   });
 });
 
+  // Event listener for the copy button
+  $(document).on('click', '.copyButton', function() {
+    const $button = $(this);
+    const originalText = $button.text();
+    const textToCopy = $(this).data('text');
+
+    const tempInput = $('<input>');
+    $('body').append(tempInput);
+    tempInput.val(textToCopy).select();
+
+    document.execCommand('copy');
+
+    tempInput.remove();
+
+    $(this).text('Text Copied!');
+    setTimeout(function() {
+      $button.text(originalText);
+    }, 1500);
+  });
 
 
