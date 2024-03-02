@@ -9,11 +9,34 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
 
+// Route to fetch all accounts
+router.get('/fetch-all-accounts', (req, res) => {
+  const userOrganizationId = 1; // Assuming the organization ID is hardcoded
+
+  let query = `
+    SELECT accounts.*
+    FROM accounts
+    JOIN categories ON accounts.category_id = categories.id
+    JOIN organizations ON categories.organization_id = organizations.id
+    WHERE organizations.id = $1
+  `;
+  const values = [userOrganizationId];
+
+  db.query(query, values)
+    .then(data => {
+      const accounts = data.rows;
+      res.json({ accounts });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 
 // Route to fetch accounts based on category
 router.get('/fetch-accounts', (req, res) => {
-  const userOrganizationId = 1; // Example: Fetch user's organization id
-  const categoryName = req.query.categoryName; // Get category name from request query
+  const userOrganizationId = 1; // Assuming the organization ID is hardcoded
+  const categoryName = req.query.categoryName;
 
   let query = `
     SELECT accounts.*
@@ -26,7 +49,7 @@ router.get('/fetch-accounts', (req, res) => {
 
   // If a specific category is selected, filter accounts by category name
   if (categoryName !== 'all') {
-    query += ` AND categories.name = $2`;
+    query += ` AND categories.id = $2`;
     values.push(categoryName);
   }
 
@@ -53,7 +76,6 @@ router.get('/new-account', (req, res) => {
   // render the new-account page
   res.render('new-account', templateVars);
 }); 
-
 
 
 // Create a new account
@@ -93,7 +115,6 @@ router.post('/new-account', (req, res) => {
 });
 
 
-
 // Get the edit-account page
 router.get('/update-account/:id', (req, res) => {
   const accountId = req.params.id;
@@ -107,6 +128,7 @@ router.get('/update-account/:id', (req, res) => {
   // render the update-account page
   res.render('update-account', templateVars);
 });
+
 
 // Update an account
 router.put('/accounts/:id', (req, res) => {
