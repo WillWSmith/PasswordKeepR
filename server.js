@@ -37,6 +37,7 @@ const organizationsRoutes = require('./routes/organizations');
 const accountsRoutes = require('./routes/accounts');
 const categoriesRoutes = require('./routes/categories');
 const loginRoutes = require('./routes/login');
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
