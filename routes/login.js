@@ -57,4 +57,9 @@ router.post('/login', (req, res) => {
     });
 });
 
+router.post('/logout', (req, res) => {
+  res.clearCookie('user_email');
+  res.redirect('/');
+});
+
 module.exports = router;
