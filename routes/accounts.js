@@ -160,6 +160,23 @@ router.get('/update-account/:id', (req, res) => {
   });
 });
 
+router.post('/update-account/:id', (req, res) => {
+  const accountId = req.params.id;
+  const newPassword = req.body.password;
+  const query = `UPDATE accounts SET password = $1 WHERE id = $2 RETURNING *`;
+  const values = [newPassword, accountId];
+
+  db.query(query, values)
+    .then(data => {
+      const account = data.rows[0];
+      res.json({ account });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+
+  res.redirect('/index'); // send the user to the index page
+});
 
 // Update an account
 router.put('/accounts/:id', (req, res) => {
