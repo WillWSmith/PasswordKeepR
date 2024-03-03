@@ -8,5 +8,7 @@ CREATE TABLE accounts (
   password TEXT NOT NULL
 );
 
+ALTER TABLE accounts
+  ALTER COLUMN organization_id SET DEFAULT 1;
 
 -- Path: db/schema/03_accounts.sql

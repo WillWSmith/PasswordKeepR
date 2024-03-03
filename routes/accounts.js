@@ -74,7 +74,7 @@ router.get('/new-account', (req, res) => {
     JOIN users ON users.id = organizations.user_id
     WHERE organizations.user_id = (SELECT id FROM users WHERE email = $1)`;
   const values = [user_email];
-  
+
   db.query(query, values)
     .then(data => {
       console.log(data.rows);
@@ -82,10 +82,10 @@ router.get('/new-account', (req, res) => {
       const organization_name = data.rows[0].organization_name;
       const user_name = data.rows[0].user_name;
       const templateVars = { user_email, organization_name, user_name};
-  
+
       // render the new-account page
       res.render('new-account', templateVars);
-    }) 
+    })
     .catch (err => {
       res.status(500).json({ error: err.message });
   });
@@ -95,25 +95,20 @@ router.get('/new-account', (req, res) => {
 // Create a new account
 router.post('/new-account', (req, res) => {
   const website = req.body.website;
-  const category = req.body.category;
+  const category = req.body.category_id;
   const username = req.body.username;
   const password = req.body.password;
-  const user_email = req.cookies.email; // get user_email from cookie
-  
-  if (!user_email) {
-    return res.status(400).send('You must be logged in to create an account');
-  }
-  if (!website || !category || !username || !password) {
+
+  if (!website || !username || !password) {
     return res.status(400).send('All fields are required');
   }
   if (website.length > 50 || username.length > 50 || password.length > 50) {
     return res.status(400).send('All fields must be less than 50 characters');
   }
 
-  const query = `INSERT INTO accounts (website, category, username, password) VALUES ($1, $2, $3, $4) RETURNING *`;
-  const values = [req.body.website, req.body.category, req.body.username, req.body.password];
-  console.log(query, values);
-
+  const query = `INSERT INTO accounts (website, category_id, username, password) VALUES ($1, $2, $3, $4) RETURNING *`;
+  const values = [website, category, username, password];
+  console.log('values:', values);
   db.query(query, values)
     .then(data => {
       const account = data.rows[0];
@@ -124,7 +119,7 @@ router.post('/new-account', (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
-  
+
   res.redirect('/index'); // send the user to the index page
 });
 
@@ -136,7 +131,7 @@ router.get('/update-account/:id', (req, res) => {
 
   const accountQuery = `SELECT * FROM accounts WHERE id = $1`;
   const accountValues = [accountId];
-  
+
   db.query(accountQuery, accountValues)
     .then(accountData => {
       const account = accountData.rows[0];
@@ -155,7 +150,7 @@ router.get('/update-account/:id', (req, res) => {
           const templateVars = { user_email, organization_name, user_name, id: accountId, website: account.website, username: account.username, password: account.password};
 
           res.render('update-account', templateVars);
-    }) 
+    })
     .catch (err => {
       res.status(500).json({ error: err.message });
     });
@@ -181,7 +176,7 @@ router.put('/accounts/:id', (req, res) => {
     .catch(err => {
       res.status(500).json({ error: err.message });
     });
-  
+
   res.redirect('/index'); // send the user to the index page
 });
 
