@@ -95,7 +95,7 @@ function fetchAccounts(categoryId) {
     $(this).text('Text Copied!');
     setTimeout(function() {
       $button.text(originalText);
-    }, 1500);
+    }, 750);
   });
 
 

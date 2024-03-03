@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/styles/layout.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/login.js"></script>
+
 </head>
 <body>
 <%- include('partials/_header') %>
@@ -44,8 +44,9 @@
           </div>
           <button type="submit">Add Account</button>
         </form>
-        <div>
-          <form id = "passwordForm">
+        <div id="passwordContainer">
+          <div id="generatePasswordHeader">Generate Password</div>
+          <form id="passwordForm" style="display: none;">
             <label for="length">Password Length:</label>
             <input type="number" id="length" name="length" min="8" max="32" required><br><br>
 
@@ -61,11 +62,11 @@
             <label for="symbols">Include Symbols:</label>
             <input type="checkbox" id="symbols" name="symbols" checked><br><br>
 
-            <button id = "generate-password" type="submit">Generate Password</button>
-            <button id = "copy-password" class="copyButton" type="submit">Copy Password</button>
+            <button id="generate-password" type="submit">Generate</button>
 
-            <label for="passwordOutput">Generated Password:</label>
-            <textarea id="passwordOutput"></textarea>
+            <div id="passwordOutput"><span id="generatedPassword"></span></div>
+            <button id="copy-password" class="copyButton" type="button">Copy Password</button>
+
           </form>
         </div>
       </section>
@@ -73,5 +74,6 @@
 
       <!-- Include the script for populating the category dropdown -->
   <script src="/scripts/app.js"></script>
+  <script src="/scripts/passwordGenerator.js"></script>
   </body>
 </html>
