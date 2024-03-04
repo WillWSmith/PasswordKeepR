@@ -88,7 +88,7 @@ $(document).on('click', '#copy-password', function() {
   tempInput.remove();
 
   // Update the button text to indicate that the password has been copied
-  $button.text('Password Copied!');
+  $button.text('Text Copied!');
   setTimeout(function() {
     $button.text(originalText);
   }, 750); // Reset the button text after 1.5 seconds
