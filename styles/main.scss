@@ -1,3 +1,72 @@
+//NAVBAR
+
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.middle {
+  margin-left: 60px;
+  margin-right: 80px;
+  flex-grow: 1;
+  color: white;
+}
+
+.middle h1 {
+  font-size: 2.3em;
+  font-weight: bold;
+}
+
+.middle h2 {
+  margin-left: 40px;
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.logo {
+  height: 98.84px;
+}
+
+.logo img {
+  max-height: 100%;
+  max-width: auto;
+}
+
+.navbar-right {
+  display: flex; /* Add this line */
+  color: white;
+}
+
+.navbar-welcomeA,
+.navbar-welcomeB,
+.navbar-right-buttons {
+  margin-right: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  align-self: center;
+}
+
+.navbar-welcomeB {
+  font-style: italic;
+  font-size: 1em;
+}
+
+.navbar-right-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+// BODY
+
 body {
   display: flex;
   flex-direction: column;
@@ -16,3 +85,5 @@ body {
     rgba(163, 208, 219, 1) 100%
   );
 }
+
+
