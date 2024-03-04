@@ -24,10 +24,10 @@
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container">
-      <h2>Enter New User Info</h2>
+    <main id="newUserContainer">
+      <h1>Enter New User Info</h1>
       <section>
-        <form action="/users" method="POST">
+        <form class="newUser" action="/users" method="POST">
           <div>
             <label for="name">Name:</label>
             <input type="name" id="name" name="name" required>
@@ -38,9 +38,9 @@
           </div>
           <div>
             <label for="password">Password:</label>
-            <input type="text" id="password" name="password" required>
+            <input type="password" id="password" name="password" required>
           </div>
-          <button type="submit">Create User</button>
+          <button class="createUserButton" type="submit">Create User</button>
         </form>
       </section>
     </main>
