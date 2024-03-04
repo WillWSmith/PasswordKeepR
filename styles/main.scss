@@ -121,11 +121,38 @@ table {
   row-gap: 1.5em;
 }
 
+#newUserContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#newUserContainer h1{
+  color: gold;
+}
+
+.newUser{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1.2em;
+  margin-bottom: 1.2em;
+  margin-left: 12%;
+}
+
+
 #newAccountContainer{
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#newAccountContainer h1{
+  color: gold;
 }
 
 .newAccount{
@@ -168,6 +195,19 @@ button {
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
+}
+
+.createUserButton{
+  background-color: #02741B;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 5%;
+  margin-right: 25%; 
+  margin-left: 10%;
 }
 
 .editButton {
