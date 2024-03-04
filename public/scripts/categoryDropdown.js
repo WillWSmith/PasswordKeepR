@@ -45,13 +45,22 @@ function fetchAccounts(categoryId) {
       data.accounts.forEach(function(account) {
         $('#accounts-body').append(`
           <tr>
-            <td>${account.website}</td>
-            <td>${account.username}</td>
-            <td>${account.password}</td>
             <td>
-              <button class="copyButton" data-text="${account.username}">Copy Username</button>
-              <button class="copyButton" data-text="${account.password}">Copy Password</button>
-              <a href="/update-account/${account.id}">Edit</a>
+            ${account.website}
+            </td>
+            <td>
+            ${account.username}
+            <button class="copyButton" data-text="${account.username}">
+            <i class="fas fa-copy"></i>
+            </button>
+            </td>
+            <td>
+            ${account.password}
+            <button class="copyButton" data-text="${account.password}">
+            <i class="fas fa-copy"></i>
+            </td>
+            <td>
+              <a class="editButton" href="/update-account/${account.id}">Edit</a>
             </td>
           </tr>
         `);
