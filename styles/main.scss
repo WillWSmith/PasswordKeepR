@@ -147,3 +147,31 @@ button {
 .logo, #nameAndSlogan {
   cursor: pointer;
 }
+
+.copyToClipboardButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.copyToClipboardButton i {
+  color: #02741B;
+  margin-left: 5px;
+}
+
+.copyToClipboardButton:hover i {
+  color: #025A15;
+}
+
+@keyframes copyAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

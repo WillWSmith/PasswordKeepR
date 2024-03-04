@@ -50,13 +50,13 @@ function fetchAccounts(categoryId) {
             </td>
             <td>
             ${account.username}
-            <button class="copyButton" data-text="${account.username}">
+            <button class="copyToClipboardButton" data-text="${account.username}">
             <i class="fas fa-copy"></i>
             </button>
             </td>
             <td>
             ${account.password}
-            <button class="copyButton" data-text="${account.password}">
+            <button class="copyToClipboardButton" data-text="${account.password}">
             <i class="fas fa-copy"></i>
             </td>
             <td>
@@ -88,23 +88,44 @@ function fetchAccounts(categoryId) {
 });
 
   // Event listener for the copy button
-  $(document).on('click', '.copyButton', function() {
-    const $button = $(this);
-    const originalText = $button.text();
-    const textToCopy = $(this).data('text');
+// Event listener for the copy button
+// Event listener for the copy button
+$(document).on('click', '.copyButton, .copyToClipboardButton', function() {
+  const $button = $(this);
+  const originalText = $button.text();
+  const textToCopy = $(this).data('text');
 
-    const tempInput = $('<input>');
-    $('body').append(tempInput);
-    tempInput.val(textToCopy).select();
+  const tempInput = $('<input>');
+  $('body').append(tempInput);
+  tempInput.val(textToCopy).select();
 
-    document.execCommand('copy');
+  document.execCommand('copy');
 
-    tempInput.remove();
+  tempInput.remove();
 
-    $(this).text('Text Copied!');
-    setTimeout(function() {
+  if ($button.hasClass('copyButton')) {
+    $button.text('Text Copied!');
+  } else if ($button.hasClass('copyToClipboardButton')) {
+    // Optionally, you can add different feedback for picture buttons
+    // For example, changing the picture icon or adding a tooltip
+    $button.html('<i class="fas fa-check"></i>'); // Change the icon to indicate text copied
+  }
+
+  // Add animation class to the button to provide feedback
+  $button.addClass('copyAnimation');
+
+  setTimeout(function() {
+    if ($button.hasClass('copyButton')) {
       $button.text(originalText);
-    }, 750);
-  });
+    } else if ($button.hasClass('copyToClipboardButton')) {
+      // Optionally, revert the icon back to copy icon after a delay
+      $button.html('<i class="fas fa-copy"></i>'); // Revert the icon back to copy
+    }
+
+    // Remove animation class after a delay to reset the animation
+    $button.removeClass('copyAnimation');
+  }, 750);
+});
+
 
 
