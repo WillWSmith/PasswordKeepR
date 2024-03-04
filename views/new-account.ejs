@@ -24,10 +24,10 @@
 <%- include('partials/_header') %>
 
 
-    <main class="container">
+    <main id="newAccountContainer">
       <h1>Add New Account</h1>
       <section>
-        <form action="/new-account" method="POST">
+        <form class="newAccount" action="/new-account" method="POST">
           <div>
             <label for="website">Website:</label>
             <input type="text" id="website" name="website" required>
@@ -47,7 +47,7 @@
             <label for="password">Password:</label>
             <input type="text" id="password" name="password" required>
           </div>
-          <button type="submit">Add Account</button>
+          <button class="addAccountButton" type="submit">Add Account</button>
         </form>
         <div id="passwordContainer">
           <div id="generatePasswordHeader">Generate Password</div>

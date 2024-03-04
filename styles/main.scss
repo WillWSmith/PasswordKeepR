@@ -95,9 +95,78 @@ table {
   border-spacing: 0 10px;
 }
 
+.loginContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer h1 {
+  color: gold;
+}
+
+.loginContainer section {
+  width: 10%;
+}
+
+#login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1.5em;
+}
+
+#newAccountContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newAccount{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1.2em;
+  margin-bottom: 1.2em;
+  margin-left: 13%;
+}
+
+#passwordContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1.2em;
+}
+
+#generatePasswordHeader{
+  color: rgb(247, 179, 8);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 // BUTTONS
 
 button {
+  cursor: pointer;
+}
+
+.loginButton {
+  background-color: #02741B;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -142,6 +211,27 @@ button {
   cursor: pointer;
   margin-left: 10px;
   margin-bottom: 5px;
+}
+
+.addAccountButton{
+  background-color: #02741B;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 18%;
+}
+
+#generate-password{
+  background-color: #02741B;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .logo, #nameAndSlogan {
