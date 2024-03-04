@@ -1,14 +1,14 @@
 $(document).ready(function() {
   // Function to fetch categories and populate the select dropdown
   function populateCategoryDropdown() {
+    // Add "All" option
+    $('#category').append(`<option value="all">All</option>`);
+
+    // Fetch other categories
     $.ajax({
       method: 'GET',
       url: '/fetch-categories',
       success: function(data) {
-        // Clear previous options
-        $('#category').empty();
-        // Add "All" option
-        $('#category').append(`<option value="all">All</option>`);
         // Populate select dropdown with fetched categories
         data.categories.forEach(function(category) {
           $('#category').append(`<option value="${category.id}">${category.name}</option>`);
@@ -20,59 +20,55 @@ $(document).ready(function() {
     });
   }
 
-// Function to fetch accounts based on category
-// Function to fetch accounts based on category
-function fetchAccounts(categoryId) {
-  let url = '/fetch-accounts';
-  let requestData = {};
+  // Function to fetch accounts based on category
+  function fetchAccounts(categoryId) {
+    let url = '/fetch-accounts';
+    let requestData = {};
 
-  if (categoryId !== 'all') {
-    requestData.categoryId = categoryId; // Sending categoryId instead of categoryName
-  }
-
-  if (categoryId === 'all') {
-    url = '/fetch-all-accounts';
-  }
-
-  $.ajax({
-    method: 'GET',
-    url: url,
-    data: requestData,
-    success: function(data) {
-      // Clear previous accounts
-      $('#accounts-body').empty();
-      // Populate accounts table with fetched accounts
-      data.accounts.forEach(function(account) {
-        $('#accounts-body').append(`
-          <tr>
-            <td>
-            ${account.website}
-            </td>
-            <td>
-            ${account.username}
-            <button class="copyToClipboardButton" data-text="${account.username}">
-            <i class="fas fa-copy"></i>
-            </button>
-            </td>
-            <td>
-            ${account.password}
-            <button class="copyToClipboardButton" data-text="${account.password}">
-            <i class="fas fa-copy"></i>
-            </td>
-            <td>
-              <a class="editButton" href="/update-account/${account.id}">Edit</a>
-            </td>
-          </tr>
-        `);
-      });
-    },
-    error: function(err) {
-      console.error('Error fetching accounts:', err);
+    if (categoryId !== 'all') {
+      requestData.categoryId = categoryId;
     }
-  });
-}
 
+    if (categoryId === 'all') {
+      url = '/fetch-all-accounts';
+    }
 
+    $.ajax({
+      method: 'GET',
+      url: url,
+      data: requestData,
+      success: function(data) {
+        // Clear previous accounts
+        $('#accounts-body').empty();
+        // Populate accounts table with fetched accounts
+        data.accounts.forEach(function(account) {
+          $('#accounts-body').append(`
+            <tr>
+              <td>${account.website}</td>
+              <td>
+                ${account.username}
+                <button class="copyToClipboardButton" data-text="${account.username}">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </td>
+              <td>
+                ${account.password}
+                <button class="copyToClipboardButton" data-text="${account.password}">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </td>
+              <td>
+                <a class="editButton" href="/update-account/${account.id}">Edit</a>
+              </td>
+            </tr>
+          `);
+        });
+      },
+      error: function(err) {
+        console.error('Error fetching accounts:', err);
+      }
+    });
+  }
 
   // Call the function to populate the category dropdown when the page loads
   populateCategoryDropdown();
@@ -80,52 +76,48 @@ function fetchAccounts(categoryId) {
   // Call the function to fetch accounts when the page loads
   fetchAccounts('all');
 
-  // Event listeners
+  // Event listener for the category change
   $('#category').change(function() {
     const selectedCategory = $(this).val();
     fetchAccounts(selectedCategory);
   });
-});
 
   // Event listener for the copy button
-// Event listener for the copy button
-// Event listener for the copy button
-$(document).on('click', '.copyButton, .copyToClipboardButton', function() {
-  const $button = $(this);
-  const originalText = $button.text();
-  const textToCopy = $(this).data('text');
+  $(document).on('click', '.copyButton, .copyToClipboardButton', function() {
+    const $button = $(this);
+    const originalText = $button.text();
+    const textToCopy = $(this).data('text');
 
-  const tempInput = $('<input>');
-  $('body').append(tempInput);
-  tempInput.val(textToCopy).select();
+    const tempInput = $('<input>');
+    $('body').append(tempInput);
+    tempInput.val(textToCopy).select();
 
-  document.execCommand('copy');
+    document.execCommand('copy');
 
-  tempInput.remove();
+    tempInput.remove();
 
-  if ($button.hasClass('copyButton')) {
-    $button.text('Text Copied!');
-  } else if ($button.hasClass('copyToClipboardButton')) {
-    // Optionally, you can add different feedback for picture buttons
-    // For example, changing the picture icon or adding a tooltip
-    $button.html('<i class="fas fa-check"></i>'); // Change the icon to indicate text copied
-  }
-
-  // Add animation class to the button to provide feedback
-  $button.addClass('copyAnimation');
-
-  setTimeout(function() {
     if ($button.hasClass('copyButton')) {
-      $button.text(originalText);
+      $button.text('Text Copied!');
     } else if ($button.hasClass('copyToClipboardButton')) {
-      // Optionally, revert the icon back to copy icon after a delay
-      $button.html('<i class="fas fa-copy"></i>'); // Revert the icon back to copy
+      $button.html('<i class="fas fa-check"></i>'); // Change the icon to indicate text copied
     }
 
-    // Remove animation class after a delay to reset the animation
-    $button.removeClass('copyAnimation');
-  }, 750);
+    // Add animation class to the button to provide feedback
+    $button.addClass('copyAnimation');
+
+    setTimeout(function() {
+      if ($button.hasClass('copyButton')) {
+        $button.text(originalText);
+      } else if ($button.hasClass('copyToClipboardButton')) {
+        $button.html('<i class="fas fa-copy"></i>'); // Revert the icon back to copy
+      }
+
+      // Remove animation class after a delay to reset the animation
+      $button.removeClass('copyAnimation');
+    }, 750);
+  });
 });
+
 
 
 
