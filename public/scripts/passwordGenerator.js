@@ -82,7 +82,7 @@ function generatePassword(length, includeLowercase, includeUppercase, includeNum
   const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
   const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const numberChars = '0123456789';
-  const symbolChars = '!@#$%^&*()_-+=[]{}|;:,.<>?';
+  const symbolChars = '!@#$%^&*()_-+=[]{}|;:,.?';
 
   // Initialize character array with selected character types
   let chars = [];
