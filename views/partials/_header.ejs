@@ -14,11 +14,9 @@
 
     <%if (user_email) { %>
       <div class="navbar-right">
-        <div class = "navbar-welcomeA">
-        <h1><%= organization_name%></h1>
-        </div>
-        <div class = "navbar-welcomeB">
-        <h2>Welcome: <%= user_name%></h2>
+        <div class = "navbar-welcome">
+        <h1>Welcome: <%= user_name%></h1>
+        <h2><%= organization_name%></h2>
         </div>
         <div class = "navbar-right-buttons">
           <form action="/users" method="GET">
