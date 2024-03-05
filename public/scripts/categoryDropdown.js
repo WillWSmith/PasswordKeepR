@@ -83,9 +83,15 @@ $(document).ready(function() {
   });
 
   // Event listener for the copy button
+  $(document).ready(function() {
+    $('.copyButton').each(function() {
+      $(this).data('original-text', $(this).text());
+    });
+  });
+
   $(document).on('click', '.copyButton, .copyToClipboardButton', function() {
     const $button = $(this);
-    const originalText = $button.text();
+    const originalText = $button.data('original-text'); // Retrieve original text from data attribute
     const textToCopy = $(this).data('text');
 
     const tempInput = $('<input>');
@@ -116,6 +122,7 @@ $(document).ready(function() {
       $button.removeClass('copyAnimation');
     }, 750);
   });
+
 });
 
 
