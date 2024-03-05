@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <!-- Font Awesome Link -->
@@ -27,19 +26,21 @@
 
 <body>
   <%- include('partials/_header') %>
-
+<section id="mainContainer">
   <h1>Accounts</h1>
-  <a class="newAccountButton" href="/new-account">Add New Account</a>
+
 
   <!-- Add select dropdown for sorting -->
-  <label for="category">Sort By:</label>
+  <div class="sortContainer">
+  <label id ="sortBy" for="category">Sort By:</label>
   <select id="category" name="category">
-    
     <!-- Categories will be dynamically populated here -->
 
   </select>
-
-  <table>
+  <a class="newAccountButton" href="/new-account">Add New Account</a>
+  </div>
+  <div class="table-container">
+  <table class="accountsTable">
     <thead>
       <tr>
         <th>Website</th>
@@ -52,10 +53,12 @@
       <!-- Accounts will be dynamically populated here -->
     </tbody>
   </table>
+  </div>
 
   <!-- SCRIPTS -->
   <script src="/scripts/categoryDropdown.js"></script>
   <script src="/scripts/listeners.js"></script>
+</section>
 </body>
 
 </html>

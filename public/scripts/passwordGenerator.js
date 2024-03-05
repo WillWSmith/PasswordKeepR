@@ -50,26 +50,6 @@ $(document).ready(function() {
     }
   );
 
-  // Event listener for copying text
-  $(document).on('click', '.copyButton', function() {
-    const $button = $(this);
-    const originalText = $button.text();
-    const textToCopy = $(this).data('text');
-
-    const tempInput = $('<input>');
-    $('body').append(tempInput);
-    tempInput.val(textToCopy).select();
-
-    document.execCommand('copy');
-
-    tempInput.remove();
-
-    $(this).text('Text Copied!');
-    setTimeout(function() {
-      $button.text(originalText);
-    }, 750);
-  });
-
   // Event listener for copying text when the "Copy Password" button is clicked
 $(document).on('click', '#copy-password', function() {
   const password = $('#passwordOutput').text(); // Get the generated password

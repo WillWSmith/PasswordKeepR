@@ -115,7 +115,7 @@ $(document).ready(function() {
       if ($button.hasClass('copyButton')) {
         $button.text(originalText);
       } else if ($button.hasClass('copyToClipboardButton')) {
-        $button.html('<i class="fas fa-copy"></i>'); // Revert the icon back to copy
+        $button.html('<i class="fas fa-copy"></i>');
       }
 
       // Remove animation class after a delay to reset the animation
