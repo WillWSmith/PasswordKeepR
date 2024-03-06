@@ -110,6 +110,27 @@
   background-color: #ff0000;
 }
 
+.background-dropdown {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.background-dropdown label {
+  margin-right: 5px;
+  color: white;
+}
+
+.background-dropdown select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
 // BODY
 
 #mainContainer {
@@ -134,10 +155,22 @@ body {
   min-height: 100vh;
   color: white;
   background: rgb(1, 0, 0);
-  background-image: url("/images/background3.png");
+  background-image: url("/images/background.png");
   background-repeat: repeat;
   font-family: 'IM Fell DW Pica', serif;
   padding-top: 8em;
+}
+
+body.background2 {
+  background-image: url('/images/background2.png');
+}
+
+body.background3 {
+  background-image: url('/images/background3.png');
+}
+
+body.background4 {
+  background-image: url('/images/background4.png');
 }
 
 table {

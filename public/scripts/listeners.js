@@ -33,3 +33,26 @@ function updatePasswordInputBackground() {
 document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
   checkbox.addEventListener('change', updatePasswordInputBackground);
 });
+
+// Event listener for background selector
+
+document.addEventListener('DOMContentLoaded', function () {
+  const backgroundSelect = document.getElementById('background-select');
+
+  backgroundSelect.addEventListener('change', function () {
+      const selectedBackground = backgroundSelect.value;
+      document.body.className = ""; // Clear existing classes
+
+      // Add class based on selected background
+      if (selectedBackground === "background2.png") {
+          document.body.classList.add("background2");
+      } else if (selectedBackground === "background3.png") {
+          document.body.classList.add("background3");
+      } else if (selectedBackground === "background4.png") {
+          document.body.classList.add("background4");
+      } else {
+          // Default background1.jpg
+          document.body.classList.add("background");
+      }
+  });
+});
