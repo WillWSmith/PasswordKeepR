@@ -194,6 +194,8 @@ table td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 35px;
+  padding-bottom: 145px;
 }
 
 .loginContainer h1 {
@@ -312,6 +314,10 @@ table td {
   align-items: center;
   margin-bottom: 0.8em;
 
+}
+
+#sortBy {
+  padding-right: 5px;
 }
 
 // Footer //
