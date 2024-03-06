@@ -11,6 +11,7 @@
   left: 0;
   font-family: "IM Fell DW Pica SC", serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding-top: 10px;
 }
 
 .middle {
@@ -24,12 +25,13 @@
 .middle h1 {
   font-size: 2.3em;
   font-weight: bold;
+  margin-left: 15px;
 }
 
 .middle h2 {
-  margin-left: 40px;
   font-style: italic;
   font-size: 1.3em;
+  margin-left: 40px;
 }
 
 .logo {
@@ -37,10 +39,12 @@
 }
 
 .logo img {
-  max-height: 90%;
-  max-width: 80%;
-  border-radius: 95% / 90%;
-  margin-top: 1.4em;
+  max-height: 82%;
+  max-width: 82%;
+  border-radius: 50%;
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 0 0.6rem gold);
+  margin-top: 10px;
   margin-left: 2.1em;
 }
 
