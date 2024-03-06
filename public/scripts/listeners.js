@@ -19,11 +19,21 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function () {
   const backgroundSelect = document.getElementById('background-select');
 
+  const selectedBackground = localStorage.getItem('selectedBackground');
+  if (selectedBackground) {
+      backgroundSelect.value = selectedBackground;
+      applyBackground(selectedBackground);
+  }
+
   backgroundSelect.addEventListener('change', function () {
       const selectedBackground = backgroundSelect.value;
-      document.body.className = ""; // Clear existing classes
+      localStorage.setItem('selectedBackground', selectedBackground);
+      applyBackground(selectedBackground);
+  });
 
-      // Add class based on selected background
+  function applyBackground(selectedBackground) {
+      document.body.className = "";
+
       if (selectedBackground === "background2.png") {
           document.body.classList.add("background2");
       } else if (selectedBackground === "background3.png") {
@@ -31,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (selectedBackground === "background4.png") {
           document.body.classList.add("background4");
       } else {
-          // Default background1.jpg
           document.body.classList.add("background");
       }
-  });
+  }
 });
+
