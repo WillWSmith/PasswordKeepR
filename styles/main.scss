@@ -261,20 +261,6 @@ table td {
   cursor: pointer;
 }
 
-#password {
-  background-color: red;
-}
-
-#password.yellow {
-  background-color: rgb(254, 254, 0);
-  /* Turn yellow when 2 checkboxes are checked */
-}
-
-#password.green {
-  background-color: green;
-  /* Turn green when 3 or 4 checkboxes are checked */
-}
-
 #category {
   background-color: #02741B;
   color: #FFFFFF;

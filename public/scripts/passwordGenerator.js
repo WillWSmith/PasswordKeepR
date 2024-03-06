@@ -128,3 +128,60 @@ function generatePassword(length, includeLowercase, includeUppercase, includeNum
 }
 
 
+
+// Function to calculate password strength
+function getPasswordStrength(password) {
+ 
+  let strength = 0;
+
+  // Check length
+  if (password.length >= 8 && password.length <= 20) {
+    strength += 1;
+  } else if (password.length > 20) {
+    strength += 2;
+  }
+
+  // Check for presence of uppercase letters
+  if (/[A-Z]/.test(password)) {
+    strength += 1;
+  }
+
+  // Check for presence of lowercase letters
+  if (/[a-z]/.test(password)) {
+    strength += 1;
+  }
+
+  // Check for presence of numbers
+  if (/\d/.test(password)) {
+    strength += 1;
+  }
+
+  // Check for presence of special characters
+  if (/[^a-zA-Z0-9]/.test(password)) {
+    strength += 1;
+  }
+
+  return strength;
+}
+
+// Function to update password strength message
+function updatePasswordStrengthMessage(password) {
+  const strength = getPasswordStrength(password);
+  let message;
+
+  if (strength >= 5) {
+    message = "Strong Password! 🐉🔥🔥🔥 ";
+  } else if (strength >= 3) {
+    message = "Medium Password. C'mon, I know you can do better than that 🤓 ";
+  } else {
+    message = "Weak Password, bruh 😶 ";
+  }
+
+  document.getElementById("passwordStrengthMessage").innerText = message;
+}
+
+// Event listener to update password strength message as the password is being typed
+document.getElementById("password").addEventListener("input", function () {
+  const password = this.value;
+  updatePasswordStrengthMessage(password);
+});
