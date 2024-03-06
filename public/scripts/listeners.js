@@ -12,3 +12,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.href = '/'; // Redirect to the homepage
   });
 });
+
