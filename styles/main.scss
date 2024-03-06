@@ -214,12 +214,18 @@ table td {
   row-gap: 1.5em;
 }
 
+#mainContainer {
+  padding-bottom: 165px;
+}
+
 #newUserContainer{
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 40px;
+  padding-bottom: 60px;
 }
 
 #newUserContainer h1{
@@ -242,6 +248,8 @@ table td {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 5px;
+  padding-bottom: 25px;
 }
 
 #newAccountContainer h1{
