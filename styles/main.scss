@@ -433,9 +433,15 @@ button {
   color: #FFFFFF;
   border: none;
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 12px;
   text-decoration: none;
   cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  border: 2px solid #02741B;
 }
 
 .editButton:hover {
