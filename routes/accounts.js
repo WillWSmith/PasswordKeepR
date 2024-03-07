@@ -197,6 +197,21 @@ router.put('/accounts/:id', (req, res) => {
   res.redirect('/index'); // send the user to the index page
 });
 
+// Delete an account
+router.delete('/delete-account/:id', (req, res) => {
+  const accountId = req.params.id;
+  const query = `DELETE FROM accounts WHERE id = $1`;
+  const values = [accountId];
+
+  db.query(query, values)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 
 
 
