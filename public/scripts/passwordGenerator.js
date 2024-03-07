@@ -172,7 +172,7 @@ function updatePasswordStrengthMessage(password) {
   if (strength >= 5) {
     message = "Strong Password! 🐉🔥🔥🔥 ";
   } else if (strength >= 3) {
-    message = "Medium Password. C'mon, I know you can do better than that 🤓 ";
+    message = "You can do better than that 🤓 ";
   } else {
     message = "Weak Password, bruh 😶 ";
   }
