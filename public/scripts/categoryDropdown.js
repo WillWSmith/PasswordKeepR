@@ -98,6 +98,8 @@ $(document).ready(function() {
   $('#category').change(function() {
     const selectedCategory = $(this).val();
     fetchAccounts(selectedCategory);
+
+    
   });
 });
 
