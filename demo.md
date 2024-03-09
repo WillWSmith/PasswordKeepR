@@ -23,3 +23,13 @@ Finally after doing everything you need with PasswordKeepR for the day you decid
 
 
 Thank you for choosing PasswordKeepR.
+
+
+#### Challenges/Extra Stretch
+
+Getting the category dropdown to correctly populate.
+Defining the "All" Category
+
+Search Bar
+Encrypted Passwords
+Delete Authorized Users
